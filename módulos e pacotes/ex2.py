@@ -6,20 +6,18 @@ print("Calculadora de IMC")
 print("para começar, me fale as informações sobre você:")
 
 def chamaFuncoes():
-    imc()
-    classificacao()
-    calc_pesoIdeal()
+    peso, altura, imc = calculo_imc()
+    classificacao(imc)
+    calc_pesoIdeal(imc, peso, altura)
 
-chamaFuncoes()
-
-def imc():
+def calculo_imc():
     peso = float(input("peso ->"))
-    altura = float(input("altura ->"))
+    altura = float(input("altura (em metros) ->"))
     if peso and altura > 0:
-        imc = peso/(altura*altura)
+        imc = peso/(altura*altura)        
     else: 
         "Alguma coisa deu errado! Digite seus dados novamente."
-        imc()
+        calculo_imc()
     return peso, altura, imc
 
 def classificacao(imc):
@@ -36,7 +34,7 @@ def classificacao(imc):
     else:
         print(f"Você está com Obesidade de Classe 3. Seu imc é de {imc:.2f}")
          
-def calc_pesoIdeal(peso, altura, imc): 
+def calc_pesoIdeal(imc, peso, altura): 
     peso_ideal_min = 18.5 *(altura*altura)
     peso_ideal_max = 24.9 *(altura*altura)
     if imc <= 18.5:
@@ -47,3 +45,5 @@ def calc_pesoIdeal(peso, altura, imc):
         print(f"Você precisa perder {peso_perder:.2f}kg para atingir o peso ideal")
     else:
         print("")
+
+chamaFuncoes()
