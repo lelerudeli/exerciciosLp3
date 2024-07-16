@@ -10,11 +10,12 @@
 
 print("Aquário!!")
 
-print("para começar, me fale as informações do seu aquário:")
+print("para começar, me fale as informações do seu aquário:\n")
 
 comprimento = float(input("comprimento ->"))
 altura = float(input("altura ->"))
 largura = float(input("largura ->"))
+
 
 def opcoes():
     print("agora que você já me deu as informações, o que deseja fazer?")
@@ -28,11 +29,13 @@ def opcoes():
             vol = volume(comprimento, altura, largura)
             print(f"O volume do seu aquário é de {vol} litros")
         case 2:
+            vol = volume(comprimento, altura, largura)
             pot(vol)
         case 3:
-            filtragem(volume)
+            vol = volume(comprimento, altura, largura)
+            filtragem(vol)
         case _:
-                print("Escolha um número de 1 a 3")
+            print("Escolha um número de 1 a 3")
 
 def volume(comprimento, altura, largura):
     vol = (comprimento*altura*largura)/1000
@@ -40,15 +43,15 @@ def volume(comprimento, altura, largura):
 
 def pot(vol):
     if vol <=0:
-          print("é preciso o valor do volume primeiro, digite a opção para calculá-lo!")
+          print("tem algo de errado com o seu volume, digite 2 para calcular novamente")
           opcoes()
     else:
          temp_desejada = float(input("você que a temperatura chegue a quantos graus? (só o número)\n"))
-         temp_ambiente = float(input("e qual é a tempreatura ambiente de agora?"))
+         temp_ambiente = float(input("e qual é a tempreatura ambiente de agora?\n"))
 
          pot = vol*0.05*(temp_desejada - temp_ambiente)
 
-         print(f"A potencia do seu termostato é de {pot}")
+         print(f"A potencia do seu termostato é de {pot:.2f}")
 
 def filtragem(vol):
     if vol <=0:
@@ -56,7 +59,7 @@ def filtragem(vol):
           opcoes()
     else:
          filtragem = vol*3
-         print(f"É preciso filtrar o filtro {filtragem} por hora")
+         print(f"É preciso filtrar o filtro {filtragem:.2f} por hora")
 
 opcoes()   
 
